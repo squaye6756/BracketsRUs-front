@@ -1,25 +1,70 @@
-import logo from './logo.svg';
+import {useState, useEffect} from 'react';
 import './App.css';
+import axios from 'axios';
+import Login from './components/Login.js';
+import Signup from './components/Signup.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    const [toggleLogin, setToggleLogin] = useState(true);
+    const [toggleError, setToggleError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
+    const [toggleLogout, setToggleLogout] = useState(false);
+    const [currUser, setCurrUser] = useState({});
+
+    const handleUserSignUp = (newUser) => {
+        axios.post('https://bracketsrus.herokuapp.com/api/users', newUser)
+        .then((response) => {
+            if (response.data.username) {
+                console.log(response);
+                setToggleError(false);
+                setErrorMsg('');
+                setCurrUser(response.data);
+                handleToggleLogout();
+            } else {
+                setErrorMsg(response.data);
+                setToggleError(true);
+            }
+        });
+    }
+
+    const handleLogin = (userObj) => {
+        console.log(userObj);
+        axios.put('https://bracketsrus.herokuapp.com/api/users/login', userObj)
+        .then((response) => {
+            if (response.data.username) { //only shows up upon successful login
+                console.log(response);
+                setToggleError(false);
+                setErrorMsg('');
+                setCurrUser(response.data);
+                handleToggleLogout();
+            } else {
+                console.log(response);
+                setToggleError(true);
+                setErrorMsg(response.data);
+            }
+        })
+    }
+
+    const handleLogout = () => {
+        setCurrUser({});
+        handleToggleLogout();
+    }
+
+    const handleToggleLogout = () => {
+        setToggleError(false);
+        if (toggleLogin === true) {
+            setToggleLogin(false);
+        } else {
+            setToggleLogin(true);
+        }
+    }
+
+    return (
+        <>
+            <Login handleLogin={handleLogin}/>
+            <Signup handleUserSignUp={handleUserSignUp}/>
+        </>
+    )
 }
 
 export default App;
