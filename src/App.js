@@ -52,7 +52,16 @@ const App = () => {
 
     const handleToggleLogout = () => {
         setToggleError(false);
-        if (toggleLogin === true) {
+        if (toggleLogout) {
+            setToggleLogout(false);
+        } else {
+            setToggleLogout(true);
+        }
+    }
+
+    const handleToggleForm = () => {
+        setToggleError(false);
+        if (toggleLogin) {
             setToggleLogin(false);
         } else {
             setToggleLogin(true);
@@ -61,8 +70,20 @@ const App = () => {
 
     return (
         <>
-            <Login handleLogin={handleLogin}/>
-            <Signup handleUserSignUp={handleUserSignUp}/>
+            <div>
+                {toggleLogout ?
+                <button onClick={handleLogout}>Logout</button>
+                :
+                <div>
+                    {toggleLogin ?
+                    <Login handleLogin={handleLogin} toggleError={toggleError} errorMsg={errorMsg}/>
+                    :
+                    <Signup handleUserSignUp={handleUserSignUp} toggleError={toggleError} errorMsg={errorMsg}/>
+                    }
+                    <button onClick={handleToggleForm}>{toggleLogin ? 'Need an account?' :'Already have an account?'}</button>
+                </div>
+                }
+            </div>
         </>
     )
 }
