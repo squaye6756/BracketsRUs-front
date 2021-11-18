@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import Login from './components/Login.js';
 import Signup from './components/Signup.js';
+import User from './components/User.js';
 
 const App = () => {
     const [toggleLogin, setToggleLogin] = useState(true);
@@ -72,7 +73,10 @@ const App = () => {
         <>
             <div>
                 {toggleLogout ?
+                <>
                 <button onClick={handleLogout}>Logout</button>
+                <User currUser={currUser}/>
+                </>
                 :
                 <div>
                     {toggleLogin ?
