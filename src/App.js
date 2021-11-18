@@ -4,6 +4,7 @@ import axios from 'axios';
 import Login from './components/Login.js';
 import Signup from './components/Signup.js';
 import User from './components/User.js';
+import TourneyList from './components/TourneyList.js'
 
 const App = () => {
     const [toggleLogin, setToggleLogin] = useState(true);
@@ -89,6 +90,7 @@ const App = () => {
                 </div>
                 }
             </div>
+            <TourneyList currUser={currUser}/>
         </>
     )
 }
