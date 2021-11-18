@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-const Login = ({handleLogin}) => { //alt way to access props
+const Login = ({handleLogin, toggleError, errorMsg}) => { //alt way to access props
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -30,6 +30,7 @@ const Login = ({handleLogin}) => { //alt way to access props
                 <label htmlFor='password'>Password: </label>
                 <input type='text' name='password' onChange={handlePasswordChange}/>
                 <input type='submit'/>
+                {toggleError && <h5>{errorMsg}</h5>}
             </form>
         </div>
     )
