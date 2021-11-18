@@ -22,6 +22,7 @@ const App = () => {
                 setCurrUser(response.data);
                 handleToggleLogout();
             } else {
+                console.log('signup error\n', response.data);
                 setErrorMsg(response.data);
                 setToggleError(true);
             }
@@ -39,9 +40,9 @@ const App = () => {
                 setCurrUser(response.data);
                 handleToggleLogout();
             } else {
-                console.log(response);
+                console.log('error', response);
                 setToggleError(true);
-                setErrorMsg(response.data);
+                setErrorMsg(response.data.error);
             }
         })
     }

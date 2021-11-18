@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-const Signup = ({handleUserSignUp}) => {
+const Signup = ({handleUserSignUp, toggleError, errorMsg}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
