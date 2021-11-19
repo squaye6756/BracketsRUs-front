@@ -43,7 +43,7 @@ const TourneyList = ({currUser}) => {
           )
         })}
       </div>
-      {currUser &&
+      {currUser.username &&
         <>
           <div className='tourneyList'>
             <h1>Participating in:</h1>
