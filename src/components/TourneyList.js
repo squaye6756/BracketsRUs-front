@@ -2,19 +2,18 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import DisplayTourney from './DisplayTourney.js';
 
-const TourneyList = ({currUser, userList}) => {
-  let [tournaments, setTournaments] = useState([])
+const TourneyList = ({currUser, userList, tournaments, getTournaments}) => {
 
   // const numOfPlayers = players.length
   // const numAvailable = limit - players.length
 
-  const getTournaments = () => {
-    axios
-    .get('https://bracketsrus.herokuapp.com/api/tournaments')
-    .then((response) => {
-      setTournaments(response.data)
-    })
-  }
+  // const getTournaments = () => {
+  //   axios
+  //   .get('https://bracketsrus.herokuapp.com/api/tournaments')
+  //   .then((response) => {
+  //     setTournaments(response.data)
+  //   })
+  // }
 
   const toggleDetails = (event) => {
     // console.log(event.target);
