@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import DisplayTourney from './DisplayTourney.js';
 
-const TourneyList = ({currUser}) => {
+const TourneyList = ({currUser, userList}) => {
   let [tournaments, setTournaments] = useState([])
 
   // const numOfPlayers = players.length
@@ -49,7 +49,7 @@ const TourneyList = ({currUser}) => {
               <h3>${tourney.prizes}</h3>
               <h3>{tourney.limit}</h3>
               <button value={`toggle-show-${tourney.id}`} onClick={toggleDetails}>Show Details</button> {/*router to display full tourney*/}
-              <DisplayTourney tourney={tourney}/>
+              <DisplayTourney tourney={tourney} userList={userList} />
             </>
           )
         })}

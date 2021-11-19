@@ -1,4 +1,4 @@
-import {useState/*, useEffect*/} from 'react';
+import {useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
 import Login from './components/Login.js';
@@ -12,6 +12,7 @@ const App = () => {
     const [errorMsg, setErrorMsg] = useState('');
     const [toggleLogout, setToggleLogout] = useState(false);
     const [currUser, setCurrUser] = useState({});
+    const [userList, setUserList] = useState([]);
 
     const handleUserSignUp = (newUser) => {
         axios.post('https://bracketsrus.herokuapp.com/api/users', newUser)
@@ -71,6 +72,17 @@ const App = () => {
         }
     }
 
+    const getUsers = () => {
+        axios.get('https://bracketsrus.herokuapp.com/api/users')
+        .then((response) => {
+            setUserList(response.data);
+        });
+    }
+
+    useEffect(() => {
+        getUsers();
+    }, []);
+
     return (
         <>
             <div>
@@ -90,7 +102,7 @@ const App = () => {
                 </div>
                 }
             </div>
-            <TourneyList currUser={currUser}/>
+            <TourneyList currUser={currUser} userList={userList}/>
         </>
     )
 }

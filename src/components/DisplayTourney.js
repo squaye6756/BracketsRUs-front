@@ -1,19 +1,11 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+import DisplayBracket from './DisplayBracket'
 
-const DisplayTourney = ({tourney}) => {
-    const [userList, setUserList] = useState([]);
+const DisplayTourney = ({tourney, userList}) => {
 
-    const getUsers = () => {
-        axios.get('https://bracketsrus.herokuapp.com/api/users')
-        .then((response) => {
-            setUserList(response.data);
-        });
-    }
 
-    useEffect(() => {
-        getUsers();
-    }, []);
+
 
     return (
         <div id={`tourney-${tourney.id}`} className='singular-tourney'>
@@ -51,6 +43,7 @@ const DisplayTourney = ({tourney}) => {
                     </div>
                 )
             })}
+            <DisplayBracket tournamentId={tourney.id} userList={userList} />
             <hr/>
             {/*tourney.players.map((player) => {
                 return(
