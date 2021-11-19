@@ -21,14 +21,20 @@ const DisplayBracket = ({ tournamentId, userList }) => {
   }, []);
 
   return (
-    <>
-      <h3>Brackets</h3>
-      {brackets.map(bracket => {
-        return (
-          <DisplayRound bracket={bracket} userList={userList} />
-        )
-      })}
-    </>
+      <>
+        {brackets[0] ?
+          <>
+          <h3>Brackets</h3>
+          {brackets.map(bracket => {
+            return (
+              <DisplayRound bracket={bracket} userList={userList} />
+            )
+          })}
+          </>
+        :
+          <h3>No Brackets Yet</h3>
+        }
+      </>
   );
 };
 
