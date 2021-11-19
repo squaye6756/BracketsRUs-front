@@ -1,6 +1,7 @@
 import {useState} from 'react';
+import axios from 'axios';
 
-const MakeTourney = ({currUser, handleCreateTourney}) => {
+const MakeTourney = ({currUser, getTournaments}) => {
     const blankTourney = {
         name: "",
         game: "",
@@ -14,6 +15,13 @@ const MakeTourney = ({currUser, handleCreateTourney}) => {
 
     const handleChange = (event) => {
         setTourney({...tourney, [event.target.name]:event.target.value})
+    }
+
+    const handleCreateTourney = (newTourney) => {
+        axios.post('https://bracketsrus.herokuapp.com/api/tournaments', newTourney)
+        .then((response) => {
+            getTournaments();
+        });
     }
 
     const submitNewTourney = (event) => {

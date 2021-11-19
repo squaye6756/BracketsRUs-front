@@ -1,17 +1,11 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import axios from 'axios';
 import MakeTourney from './MakeTourney.js';
+import TourneyList from './TourneyList.js';
 
-const User = ({currUser}) => {
+const User = ({currUser, userList, getTournaments}) => {
     const [showCreate, setShowCreate] = useState(false);
 
-    const handleCreateTourney = (newTourney) => {
-        console.log(newTourney);
-        axios.post('https://bracketsrus.herokuapp.com/api/tournaments', newTourney)
-        .then((response) => {
-            console.log(response);
-        });
-    }
 
     const toggleCreateTourney = (event) => {
         setShowCreate(!showCreate);
@@ -24,7 +18,7 @@ const User = ({currUser}) => {
             {showCreate ? 'Cancel' : 'Add Tourney'}
             </button>
             {showCreate &&
-            <MakeTourney handleCreateTourney={handleCreateTourney} currUser={currUser}/>
+            <MakeTourney currUser={currUser} getTournaments={getTournaments}/>
             }
         </>
     )

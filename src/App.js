@@ -13,6 +13,15 @@ const App = () => {
     const [toggleLogout, setToggleLogout] = useState(false);
     const [currUser, setCurrUser] = useState({});
     const [userList, setUserList] = useState([]);
+    let [tournaments, setTournaments] = useState([])
+
+    const getTournaments = () => {
+        axios
+        .get('https://bracketsrus.herokuapp.com/api/tournaments')
+        .then((response) => {
+            setTournaments(response.data)
+        })
+    }
 
     const handleUserSignUp = (newUser) => {
         axios.post('https://bracketsrus.herokuapp.com/api/users', newUser)
@@ -81,6 +90,7 @@ const App = () => {
 
     useEffect(() => {
         getUsers();
+        getTournaments();
     }, []);
 
     return (
@@ -89,7 +99,7 @@ const App = () => {
                 {toggleLogout ?
                 <>
                 <button onClick={handleLogout}>Logout</button>
-                <User currUser={currUser}/>
+                <User currUser={currUser} userList={userList} getTournaments={getTournaments}/>
                 </>
                 :
                 <div>
@@ -101,8 +111,8 @@ const App = () => {
                     <button onClick={handleToggleForm}>{toggleLogin ? 'Need an account?' :'Already have an account?'}</button>
                 </div>
                 }
+                {<TourneyList currUser={currUser} userList={userList} tournaments={tournaments} getTournaments={getTournaments}/>}
             </div>
-            <TourneyList currUser={currUser} userList={userList}/>
         </>
     )
 }
