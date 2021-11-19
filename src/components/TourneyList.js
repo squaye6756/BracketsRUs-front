@@ -1,19 +1,20 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import DisplayTourney from './DisplayTourney.js';
-
+import Edit from './Edit.js';
 const TourneyList = ({currUser, userList, tournaments, getTournaments}) => {
 
   // const numOfPlayers = players.length
   // const numAvailable = limit - players.length
 
-  // const getTournaments = () => {
-  //   axios
-  //   .get('https://bracketsrus.herokuapp.com/api/tournaments')
-  //   .then((response) => {
-  //     setTournaments(response.data)
-  //   })
-  // }
+  const handleEdit = (editTourney) => {
+    console.log(editTourney)
+    axios.put('https://bracketsrus.herokuapp.com/api/tournaments/' + editTourney.id, editTourney)
+    .then((response) => {
+      console.log(response)
+      getTournaments()
+    })
+  }
 
   const toggleDetails = (event) => {
     // console.log(event.target);
@@ -49,6 +50,9 @@ const TourneyList = ({currUser, userList, tournaments, getTournaments}) => {
               <h3>{tourney.limit}</h3>
               <button value={`toggle-show-${tourney.id}`} onClick={toggleDetails}>Show Details</button> {/*router to display full tourney*/}
               <DisplayTourney tourney={tourney} userList={userList} currUser={currUser} getTournaments={getTournaments}/>
+              {currUser.id === tourney.owner &&
+                <Edit handleEdit={handleEdit} tourney={tourney} getTournaments={getTournaments}/>
+              }
             </>
           )
         })}
