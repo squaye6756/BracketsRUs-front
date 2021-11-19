@@ -23,7 +23,7 @@ const MakeTourney = ({currUser, handleCreateTourney}) => {
     }
 
     return (
-        <>
+        <div id='new-tourney-form'>
             <h1>Create Tournament</h1>
             <form onSubmit={submitNewTourney}>
                 <label htmlFor='name'>Name: </label>
@@ -38,7 +38,7 @@ const MakeTourney = ({currUser, handleCreateTourney}) => {
                 <input type='text' name='prizes' onChange={handleChange} value={tourney.prizes}/>
                 <input type='submit'/>
             </form>
-        </>
+        </div>
     )
 }
 
