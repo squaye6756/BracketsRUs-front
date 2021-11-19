@@ -49,7 +49,7 @@ const TourneyList = ({currUser, userList}) => {
               <h3>${tourney.prizes}</h3>
               <h3>{tourney.limit}</h3>
               <button value={`toggle-show-${tourney.id}`} onClick={toggleDetails}>Show Details</button> {/*router to display full tourney*/}
-              <DisplayTourney tourney={tourney} userList={userList} />
+              <DisplayTourney tourney={tourney} userList={userList} currUser={currUser} getTournaments={getTournaments}/>
             </>
           )
         })}
