@@ -37,9 +37,9 @@ const DisplayTourney = ({tourney}) => {
             <h3>{tourney.prizes}</h3>
             <p>{tourney.details}</p>
             {tourney.complete ?
-            <button>Join</button>
+            <button>Locked</button>
             :
-            <button>Locked</button>}
+            <button>Join</button>}
             <p>Size: {tourney.players.length}</p>
             <h4><u>Participants</u></h4>
             {userList.map((user) => {
