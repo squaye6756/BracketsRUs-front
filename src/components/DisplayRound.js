@@ -6,15 +6,15 @@ const DisplayRound = ({bracket, userList}) => {
   const sortUserList = () => {
     const tempSortedUsers = [];
     for (const userId of bracket.list) {
-      const player = userList.filter(user => user.id == userId);
+      const player = userList.filter(user => user.id == userId)[0];
       tempSortedUsers.push(player)
     }
+    console.log(bracket.list)
+    console.log('Round, users:', tempSortedUsers)
     setSortedUsers(tempSortedUsers);
   };
 
   useEffect(() => {
-    console.log(bracket.list)
-    console.log('Round, users:', userList)
     sortUserList();
   }, []);
 

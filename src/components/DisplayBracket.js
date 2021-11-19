@@ -8,6 +8,7 @@ const DisplayBracket = ({ tournamentId, userList }) => {
   const getBrackets = () => {
     axios.get('https://bracketsrus.herokuapp.com/api/brackets')
     .then((response) => {
+      console.log('Bracket, users:', userList)
       const allBrackets = response.data;
       const filteredBrackets = allBrackets.filter(bracket => bracket.tournament === tournamentId);
       console.log(filteredBrackets);
@@ -16,7 +17,6 @@ const DisplayBracket = ({ tournamentId, userList }) => {
   };
 
   useEffect(() => {
-    console.log('Bracket, users:', userList)
     getBrackets();
   }, []);
 
