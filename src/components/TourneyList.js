@@ -28,40 +28,44 @@ const TourneyList = ({currUser}) => {
 
   return(
     <>
-    <div className='tourneyList'>
-      <h1>All Tournaments:</h1>
-      <hr/>
-      {tournaments.map((tourney) => {
-        return(
-          <>
-            <h2>{tourney.name}</h2>
-            <h3>{tourney.details}</h3>
-            <h3>{tourney.game}</h3>
-            <h3>${tourney.prizes}</h3>
-            <h3>{tourney.limit}</h3>
-          </>
-        )
-      })}
-    </div>
-    {currUser &&
-      tournaments.map((tourney) => {
-        return(
-          <>
-            {tourney.players.includes(currUser.id) &&
-              <div className='tourneyList'>
-                <h1>Participating in:</h1>
-                <hr/>
-                  <h2>{tourney.name}</h2>
-                  <h3>{tourney.details}</h3>
-                  <h3>{tourney.game}</h3>
-                  <h3>${tourney.prizes}</h3>
-                  <h3>{tourney.limit}</h3>
-              </div>
-            }
-          </>
-        )
-      })
-    }
+      <div className='tourneyList'>
+        <h1>All Tournaments:</h1>
+        <hr/>
+        {tournaments.map((tourney) => {
+          return(
+            <>
+              <h2>{tourney.name}</h2>
+              <h3>{tourney.details}</h3>
+              <h3>{tourney.game}</h3>
+              <h3>${tourney.prizes}</h3>
+              <h3>{tourney.limit}</h3>
+            </>
+          )
+        })}
+      </div>
+      {currUser &&
+        <>
+          <div className='tourneyList'>
+            <h1>Participating in:</h1>
+            <hr/>
+            {tournaments.map((tourney) => {
+              return(
+                <>
+                  {tourney.players.includes(currUser.id) &&
+                    <div>
+                        <h2>{tourney.name}</h2>
+                        <h3>{tourney.details}</h3>
+                        <h3>{tourney.game}</h3>
+                        <h3>${tourney.prizes}</h3>
+                        <h3>{tourney.limit}</h3>
+                    </div>
+                  }
+                </>
+              )
+            })}
+          </div>
+        </>
+      }
     </>
   )
 }
