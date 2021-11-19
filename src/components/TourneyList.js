@@ -16,6 +16,13 @@ const TourneyList = ({currUser, userList, tournaments, getTournaments}) => {
     })
   }
 
+  const handleDeleteTourney = (event) => {
+    axios.delete(`https://bracketsrus.herokuapp.com/api/tournaments/${event.target.value}`)
+    .then((response) => {
+      getTournaments()
+    });
+  }
+
   const toggleDetails = (event) => {
     // console.log(event.target);
     const tourneyId = event.target.value.split('-')[2];
@@ -51,7 +58,7 @@ const TourneyList = ({currUser, userList, tournaments, getTournaments}) => {
               <button value={`toggle-show-${tourney.id}`} onClick={toggleDetails}>Show Details</button> {/*router to display full tourney*/}
               <DisplayTourney tourney={tourney} userList={userList} currUser={currUser} getTournaments={getTournaments}/>
               {currUser.id === tourney.owner &&
-                <Edit handleEdit={handleEdit} tourney={tourney} getTournaments={getTournaments}/>
+                <Edit handleEdit={handleEdit} tourney={tourney} getTournaments={getTournaments} tournaments={tournaments} handleDeleteTourney={handleDeleteTourney}/>
               }
             </>
           )

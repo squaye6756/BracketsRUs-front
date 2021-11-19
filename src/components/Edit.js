@@ -1,20 +1,36 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
-const Edit = ({tourney, handleEdit}) => {
+const Edit = ({tourney, handleEdit, handleDeleteTourney, getTournaments, tournaments}) => {
   const [editTourney, setEditTourney] = useState(tourney)
+  const [startRemove, setStartRemove] = useState(false)
 
   const handleChange = (e) => {
     setEditTourney({...editTourney, [e.target.name]: e.target.value},)
   }
   const handleCheckedChange = (e) => {
-    setEditTourney({...editTourney, [e.target.name]: e.target.checked},)
+    setEditTourney({...editTourney, [e.target.name]: e.target.checked})
   }
-  // e.target.checked
+
+  const handleDelete = (event) => {
+    handleDeleteTourney(event);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
     handleEdit(editTourney)
   }
+
+  const startRemoveProcess = () => {
+    setStartRemove(true)
+  }
+
+  const cancelRemove = () => {
+    setStartRemove(false)
+  }
+
+  useEffect(() => {
+      setEditTourney(tourney)
+  }, [tournaments])
 
   return(
     <>
@@ -49,6 +65,15 @@ const Edit = ({tourney, handleEdit}) => {
           <input type='text' name='prizes' value={editTourney.prizes} onChange={handleChange}/>
           <input type='submit'/>
         </form>
+        {startRemove ?
+        <>
+        <p>ARE YOU SURE?</p>
+        <button value={tourney.id} onClick={handleDeleteTourney}>YES</button>
+        <button value={tourney.id} onClick={cancelRemove}>NO</button>
+        </>
+        :
+        <button value={tourney.id} onClick={startRemoveProcess}>DELETE TOURNAMENT</button>
+        }
       </details>
     </>
   )
