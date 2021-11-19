@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import DisplayRound from './DisplayRound'
 
-const DisplayBracket = ({ tournamentId }) => {
+const DisplayBracket = ({ tournamentId, userList }) => {
   const [brackets, setBrackets] = useState([]);
 
   const getBrackets = () => {
@@ -15,12 +16,18 @@ const DisplayBracket = ({ tournamentId }) => {
   };
 
   useEffect(() => {
+    console.log('Bracket, users:', userList)
     getBrackets();
   }, []);
 
   return (
     <>
-      <div>Brackets</div>
+      <h3>Brackets</h3>
+      {brackets.map(bracket => {
+        return (
+          <DisplayRound bracket={bracket} userList={userList} />
+        )
+      })}
     </>
   );
 };

@@ -5,7 +5,6 @@ import Login from './components/Login.js';
 import Signup from './components/Signup.js';
 import User from './components/User.js';
 import TourneyList from './components/TourneyList.js'
-import DisplayBracket from './components/DisplayBracket'
 
 const App = () => {
     const [toggleLogin, setToggleLogin] = useState(true);
@@ -79,7 +78,6 @@ const App = () => {
                 <>
                 <button onClick={handleLogout}>Logout</button>
                 <User currUser={currUser}/>
-                <DisplayBracket tournamentId={1} />
                 </>
                 :
                 <div>
