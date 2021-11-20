@@ -1,7 +1,5 @@
-import {useState, useEffect} from 'react';
-import axios from 'axios';
+import {useState} from 'react';
 import MakeTourney from './MakeTourney.js';
-import TourneyList from './TourneyList.js';
 
 const User = ({currUser, userList, getTournaments}) => {
     const [showCreate, setShowCreate] = useState(false);

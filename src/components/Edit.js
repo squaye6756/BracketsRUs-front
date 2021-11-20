@@ -11,10 +11,6 @@ const Edit = ({tourney, handleEdit, handleDeleteTourney, getTournaments, tournam
     setEditTourney({...editTourney, [e.target.name]: e.target.checked})
   }
 
-  const handleDelete = (event) => {
-    handleDeleteTourney(event);
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault()
     handleEdit(editTourney)

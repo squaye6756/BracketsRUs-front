@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import axios from 'axios';
 import DisplayBracket from './DisplayBracket'
 
@@ -44,8 +44,7 @@ const DisplayTourney = ({ tourney, userList, currUser, getTournaments }) => {
                     )
                 })}
             </p>
-            <h2>Champion:
-            {tourney.complete ? tourney.champion : 'Undecided'}
+            <h2>Champion: {tourney.complete ? tourney.champion : 'Undecided'}
             </h2>
             <h3>{tourney.prizes}</h3>
             <p>{tourney.details}</p>
@@ -67,7 +66,7 @@ const DisplayTourney = ({ tourney, userList, currUser, getTournaments }) => {
             <h4><u>Participants</u></h4>
             {userList.map((user) => {
                 return (
-                    <div className='participant-list'>
+                    <div className='participant-list' key={`partic-${tourney.id}-${user.id}`}>
                         {tourney.players.includes(user.id) &&
                         <p>{user.username}</p>
                         }
@@ -76,13 +75,6 @@ const DisplayTourney = ({ tourney, userList, currUser, getTournaments }) => {
             })}
             <DisplayBracket tournamentId={tourney.id} userList={userList} />
             <hr/>
-            {/*tourney.players.map((player) => {
-                return(
-                    <>
-                        <p>{player}</p>
-                    </>
-                )
-            })*/}
         </div>
     );
 };
