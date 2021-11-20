@@ -28,7 +28,7 @@ const Signup = ({handleUserSignUp, toggleError, errorMsg}) => {
                 <label htmlFor='username'>Username: </label>
                 <input type='text' name='username' onChange={handleUsernameChange}/>
                 <label htmlFor='password'>Password: </label>
-                <input type='text' name='password' onChange={handlePasswordChange}/>
+                <input type='password' name='password' onChange={handlePasswordChange}/>
                 <input type='submit'/>
             </form>
         </div>

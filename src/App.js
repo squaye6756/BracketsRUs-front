@@ -41,7 +41,7 @@ const App = () => {
     }
 
     const handleLogin = (userObj) => {
-        console.log(userObj);
+        // console.log(userObj);
         axios.put('https://bracketsrus.herokuapp.com/api/users/login', userObj)
         .then((response) => {
             if (response.data.username) { //only shows up upon successful login

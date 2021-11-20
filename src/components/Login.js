@@ -28,7 +28,7 @@ const Login = ({handleLogin, toggleError, errorMsg}) => { //alt way to access pr
                 <label htmlFor='username'>Username: </label>
                 <input type='text' name='username' onChange={handleUsernameChange}/>
                 <label htmlFor='password'>Password: </label>
-                <input type='text' name='password' onChange={handlePasswordChange}/>
+                <input type='password' name='password' onChange={handlePasswordChange}/>
                 <input type='submit'/>
                 {toggleError && <h5>{errorMsg}</h5>}
             </form>
