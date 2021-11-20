@@ -33,17 +33,15 @@ const DisplayTourney = ({ tourney, userList, currUser, getTournaments }) => {
             <hr/>
             <h1>{tourney.name}</h1>
             <h2>Game: {tourney.game}</h2>
-            <p>{'Owner: '}
-                {userList.map((user) => {
-                    return (
-                        <>
-                            {user.id === tourney.owner &&
-                            user.username
-                            }
-                        </>
-                    )
-                })}
-            </p>
+            {userList.map((user) => {
+                return (
+                    <div key={`ownership?-${tourney.id}-${user.id}`}>
+                        {user.id === tourney.owner &&
+                        <p>{`Owner: ${user.username}`}</p>
+                        }
+                    </div>
+                )
+            })}
             <h2>Champion: {tourney.complete ? tourney.champion : 'Undecided'}
             </h2>
             <h3>{tourney.prizes}</h3>
