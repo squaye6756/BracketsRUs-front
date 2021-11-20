@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import axios from 'axios';
-import DisplayBracket from './DisplayBracket'
+import DisplayBrackets from './DisplayBrackets'
 
 const DisplayTourney = ({ tourney, userList, currUser, getTournaments }) => {
     const [joinMessage, setJoinMessage] = useState('');
@@ -52,7 +52,7 @@ const DisplayTourney = ({ tourney, userList, currUser, getTournaments }) => {
             {tourney.players.includes(currUser.id) ?
               null
               :
-              tourney.complete ?
+              tourney.complete || tourney.locked ?
               <button>Locked</button>
               :
                 currUser.username ?
@@ -71,7 +71,7 @@ const DisplayTourney = ({ tourney, userList, currUser, getTournaments }) => {
                     </div>
                 )
             })}
-            <DisplayBracket tournamentId={tourney.id} userList={userList} />
+            <DisplayBrackets tourney={tourney} tournamentId={tourney.id} userList={userList} currUser={currUser}/>
             <hr/>
         </div>
     );
