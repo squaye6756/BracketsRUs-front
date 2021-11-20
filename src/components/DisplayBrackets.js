@@ -24,22 +24,29 @@ const DisplayBrackets = ({ tourney, tournamentId, userList, currUser }) => {
         {brackets[0] ?
           <>
           <h3>Brackets</h3>
-          {brackets.map(bracket => {
+          {brackets.map((bracket, index) => {
             return (
-              <DisplayRound bracket={bracket} userList={userList} key={bracket.id}/>
+              <>
+              {index === brackets.length - 1 ?
+                <DisplayRound tourney={tourney} currUser={currUser} bracket={bracket} userList={userList} key={bracket.id} getBrackets={getBrackets} isLatestRound={true}/>
+                :
+                <DisplayRound tourney={tourney} currUser={currUser} bracket={bracket} userList={userList} key={bracket.id} getBrackets={getBrackets} isLatestRound={false}/>
+              }
+              </>
             )
           })}
           </>
         :
           <>
             <h3>No Brackets Yet</h3>
-            {tourney.locked & !brackets[0] & currUser.id === tourney.owner &&
+            {tourney.locked & !brackets[0] & currUser.id === tourney.owner ?
               <CreateFirstRoundBracket
                 players={tourney.players}
-                userList={userList}
                 tournamentId={tourney.id}
                 getBrackets={getBrackets}
               />
+              :
+              null
             }
           </>
         }

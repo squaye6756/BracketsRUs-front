@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import CreateLaterBrackets from './CreateLaterBrackets';
 
-const DisplayRound = ({bracket, userList}) => {
+const DisplayRound = ({ bracket, userList, isLatestRound, tourney, currUser, getBrackets }) => {
   const [sortedUsers, setSortedUsers] = useState([]);
 
   const sortUserList = () => {
@@ -28,6 +29,19 @@ const DisplayRound = ({bracket, userList}) => {
         return index % 2 === 0 &&
           <p key={user.id}>{firstPlayer} vs {secondPlayer}</p>
       })}
+      {isLatestRound & tourney.locked & currUser.id === tourney.owner & bracket.list > 2 ?
+        <>
+          <p>Enter Winners to create next round:</p>
+          <CreateLaterBrackets
+            prevRound={bracket.round}
+            prevPlayers={sortedUsers}
+            tournamentId={bracket.tournament}
+            getBrackets={getBrackets}
+          />
+        </>
+        :
+        null
+      }
     </>
   )
 };
