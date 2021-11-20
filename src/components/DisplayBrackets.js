@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import DisplayRound from './DisplayRound'
+import CreateFirstRoundBracket from './CreateFirstRoundBracket'
 
-const DisplayBracket = ({ tournamentId, userList }) => {
+const DisplayBrackets = ({ tourney, tournamentId, userList, currUser }) => {
   const [brackets, setBrackets] = useState([]);
 
   const getBrackets = () => {
@@ -30,10 +31,20 @@ const DisplayBracket = ({ tournamentId, userList }) => {
           })}
           </>
         :
-          <h3>No Brackets Yet</h3>
+          <>
+            <h3>No Brackets Yet</h3>
+            {tourney.locked & !brackets[0] & currUser.id === tourney.owner &&
+              <CreateFirstRoundBracket
+                players={tourney.players}
+                userList={userList}
+                tournamentId={tourney.id}
+                getBrackets={getBrackets}
+              />
+            }
+          </>
         }
       </>
   );
 };
 
-export default DisplayBracket;
+export default DisplayBrackets;
