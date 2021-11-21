@@ -6,6 +6,7 @@ import Home from './Pages/Home.js';
 import LoggedInUser from './Pages/LoggedInUser.js';
 import DisplayTourney from './Pages/DisplayTourney.js';
 import PageNotFound from './Pages/PageNotFound.js';
+import Sidebar from './components/Sidebar.js';
 
 const App = () => {
 
@@ -88,6 +89,10 @@ const App = () => {
 
     return (
         <BrowserRouter>
+        <Sidebar getTournaments={getTournaments} handleUserSignUp={handleUserSignUp}
+        handleLogin={handleLogin} handleLogout={handleLogout}
+        handleToggleLogout={handleToggleLogout} handleToggleForm={handleToggleForm} toggleLogin={toggleLogin} toggleError={toggleError}
+        errorMsg={errorMsg} toggleLogout={toggleLogout} currUser={currUser} tournaments={tournaments}/>
             <Routes>
                 <Route path='/' element={<Home
                     getTournaments={getTournaments} handleUserSignUp={handleUserSignUp}
@@ -96,7 +101,10 @@ const App = () => {
                     errorMsg={errorMsg} toggleLogout={toggleLogout} currUser={currUser} tournaments={tournaments}
                     />}
                 exact />
-                <Route path='/user' element={<LoggedInUser getTournaments={getTournaments} tournaments={tournaments} currUser={currUser}/>}/>
+                <Route path='/user' element={<LoggedInUser getTournaments={getTournaments} handleUserSignUp={handleUserSignUp}
+                handleLogin={handleLogin} handleLogout={handleLogout}
+                handleToggleLogout={handleToggleLogout} handleToggleForm={handleToggleForm} toggleLogin={toggleLogin} toggleError={toggleError}
+                errorMsg={errorMsg} toggleLogout={toggleLogout} currUser={currUser} tournaments={tournaments}/>}/>
                 <Route path='/tournament/:id' element={<DisplayTourney tournaments={tournaments} getTournaments={getTournaments} currUser={currUser}/>}/>
                 <Route path='*' element={<PageNotFound />}/>
             </Routes>

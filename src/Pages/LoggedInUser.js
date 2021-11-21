@@ -1,10 +1,12 @@
 import MakeTourney from '../components/MakeTourney.js';
 import Participation from '../components/Participation.js';
 import Owned from '../components/Owned.js';
+import Home from '../Pages/Home.js';
 import {useNavigate, Link} from 'react-router-dom';
 import {useState, useEffect} from 'react';
+import Sidebar from '../components/Sidebar.js';
 
-const LoggedInUser = ({currUser, tournaments, getTournaments}) => {
+const LoggedInUser = ({toggleLogout, handleLogout, toggleLogin, handleLogin, toggleError, errorMsg, handleUserSignUp, handleToggleForm, currUser, tournaments, getTournaments}) => {
     const [showCreate, setShowCreate] = useState(false);
     const [showParticipation, setShowParticipation] = useState(false);
     const [showOwned, setShowOwned] = useState(false);
@@ -31,7 +33,6 @@ const LoggedInUser = ({currUser, tournaments, getTournaments}) => {
 
     return (
         <>
-            <Link to='/'>Home Page</Link>
             {currUser?.username &&
                 <>
                     <h2>Welcome, {currUser.username}</h2>

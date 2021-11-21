@@ -1,0 +1,29 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 100%;
+  background: rgb(41,49,63);
+  color: white;
+}
+
+/* .sidebar-content{
+  margin-left: 10px;
+} */
+
+.collapsed .sidebar-content{
+  display: none;
+}
+
+.move-body {
+  padding-left: 200px;
+}
+
+.link{
+  text-decoration: none;
+  color: white;
+}

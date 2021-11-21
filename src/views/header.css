@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  padding: 0;
+  padding-top: 50px;
+}
+
+.header{
+  height: 50px;
+  background: rgb(41,49,63);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  color: white;
+}
+
+.lines {
+  width: 35px;
+  height: 5px;
+  background-color: white;
+  margin: 6px 0;
+}
+
+.hamburger-icon, h2{
+  display: inline-block;
+}
+
+.header-content{
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+#bracketsrus{
+  margin-top: 5px;
+  vertical-align: top;
+  margin-left: 20px;
+}
