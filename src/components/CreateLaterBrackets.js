@@ -39,7 +39,7 @@ const CreateLaterBrackets = ({ prevRound, prevPlayers, tournamentId, getBrackets
             :
             null
           return index % 2 === 0 && (
-            <>
+            <div key={index/2}>
               <label htmlFor={index/2}>Winner:</label>
               {secondPlayer ?
                 <select onChange={handleSelectWinner} id={index/2}>
@@ -54,7 +54,7 @@ const CreateLaterBrackets = ({ prevRound, prevPlayers, tournamentId, getBrackets
                 </select>
               }
               <br />
-            </>
+            </div>
           )
 
         })

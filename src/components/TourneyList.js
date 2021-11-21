@@ -21,17 +21,7 @@ const TourneyList = ({currUser, tournaments, getTournaments}) => {
     });
   }
 
-  const toggleDetails = (event) => {
-    const tourneyId = event.target.value.split('-')[2];
-    const tourney = document.getElementById(`tourney-${tourneyId}`);
-    if (event.target.innerHTML === 'Hide Details' ) {
-      event.target.innerHTML = 'Show Details';
-      tourney.style.display = 'none';
-    } else {
-      event.target.innerHTML = 'Hide Details';
-      tourney.style.display = 'block';
-    }
-  }
+  
 
   useEffect(() => {
     getTournaments()

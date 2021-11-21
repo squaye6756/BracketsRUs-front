@@ -1,11 +1,11 @@
 import './App.css';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import {BrowserRouter, Route, Routes, Link} from 'react-router-dom'
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import Home from './Pages/Home.js';
-import DisplayTourneyPage from './Pages/DisplayTourneyPage.js';
 import LoggedInUser from './Pages/LoggedInUser.js';
 import DisplayTourney from './Pages/DisplayTourney.js';
+import PageNotFound from './Pages/PageNotFound.js';
 
 const App = () => {
 
@@ -98,6 +98,7 @@ const App = () => {
                 exact />
                 <Route path='/user' element={<LoggedInUser getTournaments={getTournaments} tournaments={tournaments} currUser={currUser}/>}/>
                 <Route path='/tournament/:id' element={<DisplayTourney getTournaments={getTournaments} currUser={currUser}/>}/>
+                <Route path='*' element={<PageNotFound />}/>
             </Routes>
         </BrowserRouter>
     )

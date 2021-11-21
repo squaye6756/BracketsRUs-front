@@ -1,8 +1,5 @@
-import {useState, useEffect } from 'react';
-import axios from 'axios';
 import Login from '../components/Login.js';
 import Signup from '../components/Signup.js';
-import User from '../components/User.js';
 import TourneyList from '../components/TourneyList.js';
 import {Link} from 'react-router-dom';
 

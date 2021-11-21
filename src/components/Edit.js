@@ -26,7 +26,7 @@ const Edit = ({tourney, handleEdit, handleDeleteTourney, getTournaments, tournam
 
   useEffect(() => {
       setEditTourney(tourney)
-  }, [tournaments])
+  }, [tournaments, tourney])
 
   return(
     <>
