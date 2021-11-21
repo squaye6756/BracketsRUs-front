@@ -29,7 +29,7 @@ const DisplayRound = ({ bracket, userList, isLatestRound, tourney, currUser, get
         return index % 2 === 0 &&
           <p key={user.id}>{firstPlayer} vs {secondPlayer}</p>
       })}
-      {isLatestRound & tourney.locked & currUser.id === tourney.owner & bracket.list > 2 ?
+      {isLatestRound & tourney.locked & currUser.id === tourney.owner & bracket.list.length > 2 ?
         <>
           <p>Enter Winners to create next round:</p>
           <CreateLaterBrackets

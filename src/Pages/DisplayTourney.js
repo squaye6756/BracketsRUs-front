@@ -12,6 +12,16 @@ const DisplayTourney = ({currUser, getTournaments }) => {
     const [userList, setUserList] = useState([]);
     const [tourney, setTourney] = useState({});
     const [tournaments, setTournaments] = useState([]);
+    const [brackets, setBrackets] = useState([]);
+
+    const getBrackets = () => {
+      axios.get('https://bracketsrus.herokuapp.com/api/brackets')
+      .then((response) => {
+        const allBrackets = response.data;
+        const filteredBrackets = allBrackets.filter(bracket => bracket.tournament === tourney.id);
+        setBrackets(filteredBrackets);
+      });
+    };
 
     const handleJoin = () => {
       const joinObj = {
@@ -72,6 +82,10 @@ const DisplayTourney = ({currUser, getTournaments }) => {
          getUsers();
      }, []);
 
+    useEffect(() => {
+      getBrackets()
+    }, [tourney])
+
     return (
         <>
             {currUser?.username &&
@@ -120,7 +134,7 @@ const DisplayTourney = ({currUser, getTournaments }) => {
                         </div>
                     )
                 })}
-                <DisplayBrackets tourney={tourney} tournamentId={tourney.id} userList={userList} currUser={currUser}/>
+                <DisplayBrackets tourney={tourney} tournamentId={tourney.id} userList={userList} currUser={currUser} brackets={brackets} getBrackets={getBrackets} />
                 {currUser.id === tourney.owner &&
                   <Edit handleEdit={handleEdit} tourney={tourney} getTournaments={getTournaments} tournaments={tournaments} handleDeleteTourney={handleDeleteTourney}/>
                 }
