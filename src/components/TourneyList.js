@@ -3,29 +3,18 @@ import axios from 'axios';
 import Edit from './Edit.js';
 import {Link} from 'react-router-dom';
 
-const TourneyList = ({currUser, tournaments, getTournaments}) => {
-
-  const handleEdit = (editTourney) => {
-    console.log(editTourney)
-    axios.put('https://bracketsrus.herokuapp.com/api/tournaments/' + editTourney.id, editTourney)
-    .then((response) => {
-      console.log(response)
-      getTournaments()
-    })
-  }
+const TourneyList = ({currUser, tournaments, getTournaments, handleEdit}) => {
 
   const handleDeleteTourney = (event) => {
     axios.delete(`https://bracketsrus.herokuapp.com/api/tournaments/${event.target.value}`)
     .then((response) => {
-      getTournaments()
+      getTournaments();
     });
-  }
-
-  
+  };
 
   useEffect(() => {
-    getTournaments()
-  }, [])
+    getTournaments();
+  }, []);
 
   return(
     <>
@@ -41,7 +30,6 @@ const TourneyList = ({currUser, tournaments, getTournaments}) => {
               <h3>{tourney.prizes}</h3>
               <h3>{tourney.limit}</h3>
               <Link to={`/tournament/${tourney.id}`}>See Details</Link>
-              {/*<DisplayTourney tourney={tourney} userList={userList} currUser={currUser} getTournaments={getTournaments}/>*/}
               {currUser.id === tourney.owner &&
                 <Edit handleEdit={handleEdit} tourney={tourney} getTournaments={getTournaments} tournaments={tournaments} handleDeleteTourney={handleDeleteTourney}/>
               }
@@ -50,7 +38,7 @@ const TourneyList = ({currUser, tournaments, getTournaments}) => {
         })}
       </div>
     </>
-  )
-}
+  );
+};
 
 export default TourneyList;

@@ -8,27 +8,25 @@ import DisplayTourney from './Pages/DisplayTourney.js';
 import PageNotFound from './Pages/PageNotFound.js';
 
 const App = () => {
-
     const [toggleLogin, setToggleLogin] = useState(true);
     const [toggleError, setToggleError] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
     const [toggleLogout, setToggleLogout] = useState(false);
     const [currUser, setCurrUser] = useState({});
-    let [tournaments, setTournaments] = useState([])
+    let [tournaments, setTournaments] = useState([]);
 
     const getTournaments = () => {
         axios
         .get('https://bracketsrus.herokuapp.com/api/tournaments')
         .then((response) => {
-            setTournaments(response.data)
+            setTournaments(response.data);
         })
-    }
+    };
 
     const handleUserSignUp = (newUser) => {
         axios.post('https://bracketsrus.herokuapp.com/api/users', newUser)
         .then((response) => {
             if (response.data.username) {
-                console.log(response);
                 setToggleError(false);
                 setErrorMsg('');
                 setCurrUser(response.data);
@@ -39,14 +37,13 @@ const App = () => {
                 setToggleError(true);
             }
         });
-    }
+    };
 
     const handleLogin = (userObj) => {
         // console.log(userObj);
         axios.put('https://bracketsrus.herokuapp.com/api/users/login', userObj)
         .then((response) => {
             if (response.data.username) { //only shows up upon successful login
-                console.log(response);
                 setToggleError(false);
                 setErrorMsg('');
                 setCurrUser(response.data);
@@ -57,12 +54,12 @@ const App = () => {
                 setErrorMsg(response.data.error);
             }
         })
-    }
+    };
 
     const handleLogout = () => {
         setCurrUser({});
         handleToggleLogout();
-    }
+    };
 
     const handleToggleLogout = () => {
         setToggleError(false);
@@ -71,7 +68,7 @@ const App = () => {
         } else {
             setToggleLogout(true);
         }
-    }
+    };
 
     const handleToggleForm = () => {
         setToggleError(false);
@@ -80,7 +77,14 @@ const App = () => {
         } else {
             setToggleLogin(true);
         }
-    }
+    };
+
+    const handleEdit = (editTourney) => {
+      axios.put('https://bracketsrus.herokuapp.com/api/tournaments/' + editTourney.id, editTourney)
+      .then((response) => {
+        getTournaments();
+      });
+    };
 
     useEffect(() => {
         getTournaments();
@@ -93,15 +97,15 @@ const App = () => {
                     getTournaments={getTournaments} handleUserSignUp={handleUserSignUp}
                     handleLogin={handleLogin} handleLogout={handleLogout}
                     handleToggleLogout={handleToggleLogout} handleToggleForm={handleToggleForm} toggleLogin={toggleLogin} toggleError={toggleError}
-                    errorMsg={errorMsg} toggleLogout={toggleLogout} currUser={currUser} tournaments={tournaments}
+                    errorMsg={errorMsg} toggleLogout={toggleLogout} currUser={currUser} tournaments={tournaments} handleEdit={handleEdit}
                     />}
                 exact />
-                <Route path='/user' element={<LoggedInUser getTournaments={getTournaments} tournaments={tournaments} currUser={currUser}/>}/>
-                <Route path='/tournament/:id' element={<DisplayTourney tournaments={tournaments} getTournaments={getTournaments} currUser={currUser}/>}/>
+                <Route path='/user' element={<LoggedInUser getTournaments={getTournaments} tournaments={tournaments} currUser={currUser} handleEdit={handleEdit} />}/>
+                <Route path='/tournament/:id' element={<DisplayTourney tournaments={tournaments} getTournaments={getTournaments} currUser={currUser} handleEdit={handleEdit} />}/>
                 <Route path='*' element={<PageNotFound />}/>
             </Routes>
         </BrowserRouter>
-    )
-}
+    );
+};
 
 export default App;
