@@ -5,13 +5,12 @@ import DisplayBrackets from '../components/DisplayBrackets'
 import {Link} from 'react-router-dom';
 import Edit from '../components/Edit.js';
 
-const DisplayTourney = ({currUser, getTournaments }) => {
+const DisplayTourney = ({tournaments, currUser, getTournaments }) => {
     const {id} = useParams();
     const [joinMessage, setJoinMessage] = useState('');
     const [toggleJoinMessage, setToggleJoinMessage] = useState(false);
     const [userList, setUserList] = useState([]);
     const [tourney, setTourney] = useState({});
-    const [tournaments, setTournaments] = useState([]);
     const [brackets, setBrackets] = useState([]);
 
     const getBrackets = () => {
@@ -71,7 +70,6 @@ const DisplayTourney = ({currUser, getTournaments }) => {
      const getTourney = () => {
          axios.get('https://bracketsrus.herokuapp.com/api/tournaments')
          .then((response) => {
-             setTournaments(response.data);
              const tournament = response.data.filter((t) => t.id === parseInt(id));
              setTourney(tournament[0]);
          });
@@ -80,7 +78,7 @@ const DisplayTourney = ({currUser, getTournaments }) => {
      useEffect(() => {
          getTourney();
          getUsers();
-     }, []);
+     }, [tournaments]);
 
     useEffect(() => {
       getBrackets()

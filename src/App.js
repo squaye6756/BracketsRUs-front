@@ -97,7 +97,7 @@ const App = () => {
                     />}
                 exact />
                 <Route path='/user' element={<LoggedInUser getTournaments={getTournaments} tournaments={tournaments} currUser={currUser}/>}/>
-                <Route path='/tournament/:id' element={<DisplayTourney getTournaments={getTournaments} currUser={currUser}/>}/>
+                <Route path='/tournament/:id' element={<DisplayTourney tournaments={tournaments} getTournaments={getTournaments} currUser={currUser}/>}/>
                 <Route path='*' element={<PageNotFound />}/>
             </Routes>
         </BrowserRouter>

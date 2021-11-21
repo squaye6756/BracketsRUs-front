@@ -3,8 +3,7 @@ import Signup from '../components/Signup.js';
 import TourneyList from '../components/TourneyList.js';
 import {Link} from 'react-router-dom';
 
-const Home = ({toggleLogout, handleLogout, toggleLogin, handleLogin, toggleError,
-    errorMsg, handleUserSignUp, handleToggleForm, currUser, tournaments, getTournaments}) => {
+const Home = ({toggleLogout, handleLogout, toggleLogin, handleLogin, toggleError, errorMsg, handleUserSignUp, handleToggleForm, currUser, tournaments, getTournaments}) => {
 
     return (
         <div>
