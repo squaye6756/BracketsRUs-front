@@ -5,7 +5,7 @@ import DisplayBrackets from '../components/DisplayBrackets'
 import {Link} from 'react-router-dom';
 import Edit from '../components/Edit.js';
 
-const DisplayTourney = ({tournaments, currUser, getTournaments }) => {
+const DisplayTourney = ({tournaments, currUser, getTournaments, handleEdit }) => {
     const {id} = useParams();
     const [joinMessage, setJoinMessage] = useState('');
     const [toggleJoinMessage, setToggleJoinMessage] = useState(false);
@@ -47,17 +47,11 @@ const DisplayTourney = ({tournaments, currUser, getTournaments }) => {
      const getUsers = () => {
          axios.get('https://bracketsrus.herokuapp.com/api/users')
          .then((response) => {
-             setUserList(response.data);
+            for (const user of response.data) {
+              delete user.password;
+            }
+            setUserList(response.data);
          });
-     }
-
-     const handleEdit = (editTourney) => {
-         console.log(editTourney)
-         axios.put('https://bracketsrus.herokuapp.com/api/tournaments/' + editTourney.id, editTourney)
-         .then((response) => {
-             console.log(response)
-             getTournaments()
-         })
      }
 
      const handleDeleteTourney = (event) => {
@@ -103,7 +97,10 @@ const DisplayTourney = ({tournaments, currUser, getTournaments }) => {
                         </div>
                     )
                 })}
-                <h2>Champion: {tourney.complete ? tourney.champion : 'Undecided'}
+                <h2>Champion: {tourney.champion ?
+                  userList.filter((user) => user.id === tourney.champion)[0].username
+                  :
+                  'Undecided'}
                 </h2>
                 <h3>{tourney.prizes}</h3>
                 <p>{tourney.details}</p>
@@ -132,7 +129,7 @@ const DisplayTourney = ({tournaments, currUser, getTournaments }) => {
                         </div>
                     )
                 })}
-                <DisplayBrackets tourney={tourney} tournamentId={tourney.id} userList={userList} currUser={currUser} brackets={brackets} getBrackets={getBrackets} />
+                <DisplayBrackets tourney={tourney} tournamentId={tourney.id} userList={userList} currUser={currUser} brackets={brackets} getBrackets={getBrackets} handleEdit={handleEdit} />
                 {currUser.id === tourney.owner &&
                   <Edit handleEdit={handleEdit} tourney={tourney} getTournaments={getTournaments} tournaments={tournaments} handleDeleteTourney={handleDeleteTourney}/>
                 }

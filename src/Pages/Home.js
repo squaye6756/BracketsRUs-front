@@ -4,7 +4,7 @@ import TourneyList from '../components/TourneyList.js';
 
 import Sidebar from '../components/Sidebar.js';
 
-const Home = ({toggleLogout, handleLogout, toggleLogin, handleLogin, toggleError, errorMsg, handleUserSignUp, handleToggleForm, currUser, tournaments, getTournaments}) => {
+const Home = ({toggleLogout, handleLogout, toggleLogin, handleLogin, toggleError, errorMsg, handleUserSignUp, handleToggleForm, currUser, tournaments, getTournaments, handleEdit}) => {
 
     return (
         <div>

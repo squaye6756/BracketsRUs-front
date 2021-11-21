@@ -1,32 +1,33 @@
 import React, {useState, useEffect} from 'react'
 
 const Edit = ({tourney, handleEdit, handleDeleteTourney, getTournaments, tournaments}) => {
-  const [editTourney, setEditTourney] = useState(tourney)
-  const [startRemove, setStartRemove] = useState(false)
+  const [editTourney, setEditTourney] = useState(tourney);
+  const [startRemove, setStartRemove] = useState(false);
 
   const handleChange = (e) => {
-    setEditTourney({...editTourney, [e.target.name]: e.target.value},)
-  }
+    setEditTourney({...editTourney, [e.target.name]: e.target.value},);
+  };
+
   const handleCheckedChange = (e) => {
-    setEditTourney({...editTourney, [e.target.name]: e.target.checked})
-  }
+    setEditTourney({...editTourney, [e.target.name]: e.target.checked});
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    handleEdit(editTourney)
-  }
+    e.preventDefault();
+    handleEdit(editTourney);
+  };
 
   const startRemoveProcess = () => {
-    setStartRemove(true)
-  }
+    setStartRemove(true);
+  };
 
   const cancelRemove = () => {
-    setStartRemove(false)
-  }
+    setStartRemove(false);
+  };
 
   useEffect(() => {
-      setEditTourney(tourney)
-  }, [tournaments, tourney])
+      setEditTourney(tourney);
+  }, [tournaments, tourney]);
 
   return(
     <>
@@ -49,12 +50,12 @@ const Edit = ({tourney, handleEdit, handleDeleteTourney, getTournaments, tournam
           <input type='text' name='details' value={editTourney.details} onChange={handleChange}/>
           <br />
           <br />
-          <label htmlFor='complete'>Is complete: </label>
-          <input type='checkbox' name='complete' value={editTourney.complete} onChange={handleCheckedChange}/>
-          <br />
-          <br />
           <label htmlFor='locked'>locked: </label>
-          <input type='checkbox' name='locked' value={editTourney.locked} onChange={handleCheckedChange}/>
+          {editTourney.locked ?
+            <input type='checkbox' name='locked' value={editTourney.locked} onChange={handleCheckedChange} checked/>
+            :
+            <input type='checkbox' name='locked' value={editTourney.locked} onChange={handleCheckedChange}/>
+          }
           <br />
           <br />
           <label htmlFor='prizes'>prizes: </label>
@@ -72,8 +73,8 @@ const Edit = ({tourney, handleEdit, handleDeleteTourney, getTournaments, tournam
         }
       </details>
     </>
-  )
-}
+  );
+};
 
 
 export default Edit;
