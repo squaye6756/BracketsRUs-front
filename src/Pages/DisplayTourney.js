@@ -47,7 +47,10 @@ const DisplayTourney = ({tournaments, currUser, getTournaments }) => {
      const getUsers = () => {
          axios.get('https://bracketsrus.herokuapp.com/api/users')
          .then((response) => {
-             setUserList(response.data);
+            for (const user of response.data) {
+              delete user.password;
+            }
+            setUserList(response.data);
          });
      }
 
