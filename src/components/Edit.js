@@ -49,12 +49,12 @@ const Edit = ({tourney, handleEdit, handleDeleteTourney, getTournaments, tournam
           <input type='text' name='details' value={editTourney.details} onChange={handleChange}/>
           <br />
           <br />
-          <label htmlFor='complete'>Is complete: </label>
-          <input type='checkbox' name='complete' value={editTourney.complete} onChange={handleCheckedChange}/>
-          <br />
-          <br />
           <label htmlFor='locked'>locked: </label>
-          <input type='checkbox' name='locked' value={editTourney.locked} onChange={handleCheckedChange}/>
+          {tourney.locked ?
+            <input type='checkbox' name='locked' value={editTourney.locked} onChange={handleCheckedChange} checked/>
+            :
+            <input type='checkbox' name='locked' value={editTourney.locked} onChange={handleCheckedChange}/>
+          }
           <br />
           <br />
           <label htmlFor='prizes'>prizes: </label>
