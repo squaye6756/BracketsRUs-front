@@ -1,4 +1,4 @@
-
+import {Link} from 'react-router-dom';
 
 const Participation = ({currUser, tournaments}) => {
     return (
@@ -18,6 +18,7 @@ const Participation = ({currUser, tournaments}) => {
                               <h3>{tourney.game}</h3>
                               <h3>{tourney.prizes}</h3>
                               <h3>{tourney.limit}</h3>
+                              <Link to={`/tournament/${tourney.id}`}>See Details</Link>
                           </div>
                         }
                       </>

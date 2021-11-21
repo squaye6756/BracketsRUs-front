@@ -1,11 +1,9 @@
 import React, {useEffect} from 'react'
 import axios from 'axios';
-import DisplayTourney from './DisplayTourney.js';
 import Edit from './Edit.js';
-const TourneyList = ({currUser, userList, tournaments, getTournaments}) => {
+import {Link} from 'react-router-dom';
 
-  // const numOfPlayers = players.length
-  // const numAvailable = limit - players.length
+const TourneyList = ({currUser, tournaments, getTournaments}) => {
 
   const handleEdit = (editTourney) => {
     console.log(editTourney)
@@ -52,8 +50,8 @@ const TourneyList = ({currUser, userList, tournaments, getTournaments}) => {
               <h3>{tourney.game}</h3>
               <h3>{tourney.prizes}</h3>
               <h3>{tourney.limit}</h3>
-              <button value={`toggle-show-${tourney.id}`} onClick={toggleDetails}>Show Details</button> {/*router to display full tourney*/}
-              <DisplayTourney tourney={tourney} userList={userList} currUser={currUser} getTournaments={getTournaments}/>
+              <Link to={`/tournament/${tourney.id}`}>See Details</Link>
+              {/*<DisplayTourney tourney={tourney} userList={userList} currUser={currUser} getTournaments={getTournaments}/>*/}
               {currUser.id === tourney.owner &&
                 <Edit handleEdit={handleEdit} tourney={tourney} getTournaments={getTournaments} tournaments={tournaments} handleDeleteTourney={handleDeleteTourney}/>
               }

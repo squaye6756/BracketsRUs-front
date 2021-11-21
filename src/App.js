@@ -5,6 +5,7 @@ import {BrowserRouter, Route, Routes, Link} from 'react-router-dom'
 import Home from './Pages/Home.js';
 import DisplayTourneyPage from './Pages/DisplayTourneyPage.js';
 import LoggedInUser from './Pages/LoggedInUser.js';
+import DisplayTourney from './Pages/DisplayTourney.js';
 
 const App = () => {
 
@@ -13,7 +14,6 @@ const App = () => {
     const [errorMsg, setErrorMsg] = useState('');
     const [toggleLogout, setToggleLogout] = useState(false);
     const [currUser, setCurrUser] = useState({});
-    const [userList, setUserList] = useState([]);
     let [tournaments, setTournaments] = useState([])
 
     const getTournaments = () => {
@@ -82,15 +82,7 @@ const App = () => {
         }
     }
 
-    const getUsers = () => {
-        axios.get('https://bracketsrus.herokuapp.com/api/users')
-        .then((response) => {
-            setUserList(response.data);
-        });
-    }
-
     useEffect(() => {
-        getUsers();
         getTournaments();
     }, []);
 
@@ -100,13 +92,12 @@ const App = () => {
                 <Route path='/' element={<Home
                     getTournaments={getTournaments} handleUserSignUp={handleUserSignUp}
                     handleLogin={handleLogin} handleLogout={handleLogout}
-                    handleToggleLogout={handleToggleLogout} handleToggleForm={handleToggleForm}
-                    getUsers={getUsers} toggleLogin={toggleLogin} toggleError={toggleError}
-                    errorMsg={errorMsg} toggleLogout={toggleLogout} currUser={currUser}
-                    userList={userList} tournaments={tournaments}
+                    handleToggleLogout={handleToggleLogout} handleToggleForm={handleToggleForm} toggleLogin={toggleLogin} toggleError={toggleError}
+                    errorMsg={errorMsg} toggleLogout={toggleLogout} currUser={currUser} tournaments={tournaments}
                     />}
                 exact />
                 <Route path='/user' element={<LoggedInUser getTournaments={getTournaments} tournaments={tournaments} currUser={currUser}/>}/>
+                <Route path='/tournament/:id' element={<DisplayTourney getTournaments={getTournaments} currUser={currUser}/>}/>
             </Routes>
         </BrowserRouter>
     )

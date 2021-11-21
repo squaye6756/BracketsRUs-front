@@ -7,8 +7,7 @@ import TourneyList from '../components/TourneyList.js';
 import {Link} from 'react-router-dom';
 
 const Home = ({toggleLogout, handleLogout, toggleLogin, handleLogin, toggleError,
-    errorMsg, handleUserSignUp, handleToggleForm, currUser, userList,
-    tournaments, getTournaments}) => {
+    errorMsg, handleUserSignUp, handleToggleForm, currUser, tournaments, getTournaments}) => {
 
     return (
         <div>
@@ -32,7 +31,7 @@ const Home = ({toggleLogout, handleLogout, toggleLogin, handleLogin, toggleError
                 <button onClick={handleToggleForm}>{toggleLogin ? 'Need an account?' :'Already have an account?'}</button>
             </div>
             }
-            {<TourneyList currUser={currUser} userList={userList} tournaments={tournaments} getTournaments={getTournaments}/>}
+            {<TourneyList currUser={currUser} tournaments={tournaments} getTournaments={getTournaments}/>}
         </div>
     )
 }
