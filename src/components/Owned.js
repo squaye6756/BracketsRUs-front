@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 import Edit from '../components/Edit.js';
+import {Link} from 'react-router-dom';
 
 const Owned = ({currUser, tournaments, getTournaments}) => {
 
@@ -25,7 +26,9 @@ const Owned = ({currUser, tournaments, getTournaments}) => {
     }, []);
 
     return (
-        <>
+        <div className='owned-tourney-list'>
+            <h1>Owned Tournaments:</h1>
+            <hr/>
             {
                 tournaments.map((tourney) => {
                     return (
@@ -37,6 +40,7 @@ const Owned = ({currUser, tournaments, getTournaments}) => {
                                     <h3>{tourney.game}</h3>
                                     <h3>{tourney.prizes}</h3>
                                     <h3>{tourney.limit}</h3>
+                                    <Link to={`/tournament/${tourney.id}`}>See Details</Link>
                                     <Edit handleEdit={handleEdit} tourney={tourney} getTournaments={getTournaments} tournaments={tournaments} handleDeleteTourney={handleDeleteTourney}/>
                                 </div>
                             }
@@ -44,7 +48,7 @@ const Owned = ({currUser, tournaments, getTournaments}) => {
                     )
                 })
             }
-        </>
+        </div>
     )
 }
 
