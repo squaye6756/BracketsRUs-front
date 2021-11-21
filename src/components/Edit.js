@@ -50,7 +50,7 @@ const Edit = ({tourney, handleEdit, handleDeleteTourney, getTournaments, tournam
           <br />
           <br />
           <label htmlFor='locked'>locked: </label>
-          {tourney.locked ?
+          {editTourney.locked ?
             <input type='checkbox' name='locked' value={editTourney.locked} onChange={handleCheckedChange} checked/>
             :
             <input type='checkbox' name='locked' value={editTourney.locked} onChange={handleCheckedChange}/>
