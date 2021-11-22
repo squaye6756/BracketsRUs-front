@@ -19,7 +19,7 @@ const DisplayRound = ({ bracket, userList, isLatestRound, tourney, currUser, get
   }, []);
 
   return (
-    <>
+    <div className="round">
       <h4>Round: {bracket.round}</h4>
       {sortedUsers.map((user, index) => {
         const firstPlayer = user.username
@@ -52,7 +52,7 @@ const DisplayRound = ({ bracket, userList, isLatestRound, tourney, currUser, get
         :
         null
       }
-    </>
+    </div>
   );
 };
 

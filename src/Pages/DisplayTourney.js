@@ -113,8 +113,11 @@ const DisplayTourney = ({tournaments, currUser, getTournaments, handleEdit }) =>
                 :
                   <button>You must be logged in to join</button>
             }
-            <p>Size: {tourney.players?.length}</p>
+            <p>Size: {tourney.players?.length}/{tourney.limit}</p>
             <h3><u>Participants</u></h3>
+            {tourney.players?.length === 0 &&
+              <p>None yet</p>
+            }
             {userList.map((user) => {
                 return (
                     <div className='participant-list' key={`partic-${tourney.id}-${user.id}`}>
