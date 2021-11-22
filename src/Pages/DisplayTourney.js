@@ -97,8 +97,8 @@ const DisplayTourney = ({tournaments, currUser, getTournaments, handleEdit }) =>
               :
               'Undecided'}
             </h2>
-            <h3>{tourney.prizes}</h3>
-            <p>{tourney.details}</p>
+            <p>Prizes: {tourney.prizes}</p>
+            <p>Details: {tourney.details}</p>
             {toggleJoinMessage &&
               <p>{joinMessage}</p>
             }
@@ -114,7 +114,7 @@ const DisplayTourney = ({tournaments, currUser, getTournaments, handleEdit }) =>
                   <button>You must be logged in to join</button>
             }
             <p>Size: {tourney.players?.length}</p>
-            <h4><u>Participants</u></h4>
+            <h3><u>Participants</u></h3>
             {userList.map((user) => {
                 return (
                     <div className='participant-list' key={`partic-${tourney.id}-${user.id}`}>

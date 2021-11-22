@@ -6,7 +6,7 @@ const Participation = ({currUser, tournaments}) => {
         <>
             {currUser.username &&
               <>
-                <h1>Participating in:</h1>
+                <h1 className='partic-h1'>Participating in:</h1>
                 <hr/>
                 <div className='tourneyList'>
                   {tournaments.map((tourney) => {

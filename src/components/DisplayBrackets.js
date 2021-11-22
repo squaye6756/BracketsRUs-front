@@ -7,7 +7,7 @@ const DisplayBrackets = ({ tourney, userList, currUser, brackets, getBrackets, h
       <>
         {brackets[0] ?
           <>
-          <h3>Brackets</h3>
+          <h3><u>Brackets</u></h3>
           {brackets.map((bracket, index) => {
             return (
               <div key={index}>
