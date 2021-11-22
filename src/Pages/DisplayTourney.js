@@ -92,8 +92,8 @@ const DisplayTourney = ({tournaments, currUser, getTournaments, handleEdit }) =>
                     </div>
                 )
             })}
-            <h2>Champion: {tourney.champion ?
-              userList.filter((user) => user.id === tourney.champion)[0].username
+            <h2>Champion: {tourney?.champion ?
+              userList.filter((user) => user.id === tourney.champion)[0]?.username
               :
               'Undecided'}
             </h2>
@@ -108,7 +108,7 @@ const DisplayTourney = ({tournaments, currUser, getTournaments, handleEdit }) =>
               tourney.complete || tourney.locked ?
               <button>Locked</button>
               :
-                currUser.username ?
+                currUser?.username ?
                 <button onClick={handleJoin}>Join</button>
                 :
                   <button>You must be logged in to join</button>
