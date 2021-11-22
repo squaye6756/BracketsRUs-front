@@ -7,3 +7,18 @@ a {
   text-decoration: none;
   color: yellow;
 }
+
+h3, h4 {
+  margin: 5px 0;  
+}
+
+.bracket, .round {
+  border: 1px solid white;
+  border-radius: 10px;
+  width: fit-content;
+  padding: 10px;
+}
+
+.round:last-child {
+  margin-bottom: 10px;
+}

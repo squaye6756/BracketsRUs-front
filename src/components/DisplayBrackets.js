@@ -4,7 +4,7 @@ import CreateFirstRoundBracket from './CreateFirstRoundBracket'
 const DisplayBrackets = ({ tourney, userList, currUser, brackets, getBrackets, handleEdit }) => {
 
   return (
-      <>
+      <div className="bracket">
         {brackets[0] ?
           <>
           <h3><u>Brackets</u></h3>
@@ -34,7 +34,7 @@ const DisplayBrackets = ({ tourney, userList, currUser, brackets, getBrackets, h
             }
           </>
         }
-      </>
+      </div>
   );
 };
 
