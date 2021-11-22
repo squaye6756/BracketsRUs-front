@@ -4,17 +4,10 @@ Brackets-R-Us is where you can create, manage, and join tournaments.
 [Link to live site](https://brackets-r-us.herokuapp.com/)
 
 ## Technologies Used
-- Front-end Technologies
   * HTML
   * CSS
   * React
   * React-router
-
-- Back-end Technologies
-  * Django
-  * Python
-  * SQL
-  * Postgres
 
 ## User Stories
 * A user can view all tournaments.
