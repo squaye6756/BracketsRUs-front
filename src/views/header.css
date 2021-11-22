@@ -30,7 +30,10 @@ body {
 }
 
 #bracketsrus{
+  text-decoration: none;
+  color: white;
   margin-top: 5px;
   vertical-align: top;
   margin-left: 20px;
+  font-size: 30px;
 }

@@ -1,4 +1,4 @@
-import {useNavigate, Link, useLocation} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 
 const PageNotFound = () => {
   const {pathname} = useLocation();

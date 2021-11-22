@@ -1,10 +1,9 @@
 import MakeTourney from '../components/MakeTourney.js';
 import Participation from '../components/Participation.js';
 import Owned from '../components/Owned.js';
-import Home from '../Pages/Home.js';
-import {useNavigate, Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {useState, useEffect} from 'react';
-import Sidebar from '../components/Sidebar.js';
+import '../views/user.css';
 
 const LoggedInUser = ({toggleLogout, handleLogout, toggleLogin, handleLogin, toggleError, errorMsg, handleUserSignUp, handleToggleForm, currUser, tournaments, getTournaments}) => {
     const [showCreate, setShowCreate] = useState(false);
@@ -35,7 +34,6 @@ const LoggedInUser = ({toggleLogout, handleLogout, toggleLogin, handleLogin, tog
         <>
             {currUser?.username &&
                 <>
-                    <h2>Welcome, {currUser.username}</h2>
                     <button onClick={toggleCreateTourney}>
                     {showCreate ? 'Cancel' : 'Add Tourney'}
                     </button>

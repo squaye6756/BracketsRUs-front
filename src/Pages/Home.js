@@ -1,10 +1,6 @@
-import Login from '../components/Login.js';
-import Signup from '../components/Signup.js';
 import TourneyList from '../components/TourneyList.js';
 
-import Sidebar from '../components/Sidebar.js';
-
-const Home = ({toggleLogout, handleLogout, toggleLogin, handleLogin, toggleError, errorMsg, handleUserSignUp, handleToggleForm, currUser, tournaments, getTournaments, handleEdit}) => {
+const Home = ({currUser, tournaments, getTournaments}) => {
 
     return (
         <div>

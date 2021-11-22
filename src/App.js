@@ -93,17 +93,12 @@ const App = () => {
 
     return (
         <BrowserRouter>
-        <Sidebar getTournaments={getTournaments} handleUserSignUp={handleUserSignUp}
+        <Sidebar handleUserSignUp={handleUserSignUp}
         handleLogin={handleLogin} handleLogout={handleLogout}
         handleToggleLogout={handleToggleLogout} handleToggleForm={handleToggleForm} toggleLogin={toggleLogin} toggleError={toggleError}
-        errorMsg={errorMsg} toggleLogout={toggleLogout} currUser={currUser} tournaments={tournaments}/>
+        errorMsg={errorMsg} toggleLogout={toggleLogout} currUser={currUser}/>
             <Routes>
-                <Route path='/' element={<Home
-                    getTournaments={getTournaments} handleUserSignUp={handleUserSignUp}
-                    handleLogin={handleLogin} handleLogout={handleLogout}
-                    handleToggleLogout={handleToggleLogout} handleToggleForm={handleToggleForm} toggleLogin={toggleLogin} toggleError={toggleError}
-                    errorMsg={errorMsg} toggleLogout={toggleLogout} currUser={currUser} tournaments={tournaments} handleEdit={handleEdit}
-                    />}
+                <Route path='/' element={<Home getTournaments={getTournaments} currUser={currUser} tournaments={tournaments}/>}
                 exact />
                 <Route path='/user' element={<LoggedInUser getTournaments={getTournaments} tournaments={tournaments} currUser={currUser} handleEdit={handleEdit} />}/>
                 <Route path='/tournament/:id' element={<DisplayTourney tournaments={tournaments} getTournaments={getTournaments} currUser={currUser} handleEdit={handleEdit} />}/>

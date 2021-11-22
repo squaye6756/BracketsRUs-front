@@ -1,3 +1,7 @@
+body{
+  background: rgb(21,27,40);
+}
+
 .sidebar {
   position: fixed;
   top: 0;
@@ -11,9 +15,9 @@
   color: white;
 }
 
-/* .sidebar-content{
-  margin-left: 10px;
-} */
+.sidebar-content{
+  padding-left: 10px;
+}
 
 .collapsed .sidebar-content{
   display: none;
@@ -25,5 +29,5 @@
 
 .link{
   text-decoration: none;
-  color: white;
+  color: yellow;
 }

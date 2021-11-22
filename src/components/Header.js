@@ -1,5 +1,5 @@
-import {Link} from 'react-router-dom';
 import '../views/header.css';
+import {Link} from 'react-router-dom';
 
 const Header = ({currUser, handleToggle}) => {
   return(
@@ -10,7 +10,7 @@ const Header = ({currUser, handleToggle}) => {
         <div className="lines"></div>
         <div className="lines"></div>
       </div>
-      <h2 id='bracketsrus'>Brackets-R-Us</h2>
+      <Link id='bracketsrus' to='/'>Brackets-R-Us</Link>
     </div>
     </div>
   )

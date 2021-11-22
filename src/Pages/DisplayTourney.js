@@ -2,8 +2,8 @@ import {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
 import DisplayBrackets from '../components/DisplayBrackets'
-import {Link} from 'react-router-dom';
 import Edit from '../components/Edit.js';
+import '../views/tourneyDetails.css';
 
 const DisplayTourney = ({tournaments, currUser, getTournaments, handleEdit }) => {
     const {id} = useParams();
@@ -70,8 +70,8 @@ const DisplayTourney = ({tournaments, currUser, getTournaments, handleEdit }) =>
      }
 
      useEffect(() => {
-         getTourney();
-         getUsers();
+        getTourney();
+        getUsers();
      }, [tournaments]);
 
     useEffect(() => {
@@ -80,61 +80,56 @@ const DisplayTourney = ({tournaments, currUser, getTournaments, handleEdit }) =>
 
     return (
         <>
-            {currUser?.username &&
-                <Link to='/user'>User Page</Link>
+          <div id={`tourney-${tourney.id}`} className='singular-tourney'>
+            <h1>{tourney.name}</h1>
+            <h2>Game: {tourney.game}</h2>
+            {userList.map((user) => {
+                return (
+                    <div key={`ownership?-${tourney.id}-${user.id}`}>
+                        {user.id === tourney.owner &&
+                        <p>{`Owner: ${user.username}`}</p>
+                        }
+                    </div>
+                )
+            })}
+            <h2>Champion: {tourney.champion ?
+              userList.filter((user) => user.id === tourney.champion)[0].username
+              :
+              'Undecided'}
+            </h2>
+            <h3>{tourney.prizes}</h3>
+            <p>{tourney.details}</p>
+            {toggleJoinMessage &&
+              <p>{joinMessage}</p>
             }
-            <Link to='/'>Home</Link>
-            <div id={`tourney-${tourney.id}`} className='singular-tourney'>
-                <hr/>
-                <h1>{tourney.name}</h1>
-                <h2>Game: {tourney.game}</h2>
-                {userList.map((user) => {
-                    return (
-                        <div key={`ownership?-${tourney.id}-${user.id}`}>
-                            {user.id === tourney.owner &&
-                            <p>{`Owner: ${user.username}`}</p>
-                            }
-                        </div>
-                    )
-                })}
-                <h2>Champion: {tourney.champion ?
-                  userList.filter((user) => user.id === tourney.champion)[0].username
-                  :
-                  'Undecided'}
-                </h2>
-                <h3>{tourney.prizes}</h3>
-                <p>{tourney.details}</p>
-                {toggleJoinMessage &&
-                  <p>{joinMessage}</p>
-                }
-                {tourney.players?.includes(currUser.id) ?
-                  null
-                  :
-                  tourney.complete || tourney.locked ?
-                  <button>Locked</button>
-                  :
-                    currUser.username ?
-                    <button onClick={handleJoin}>Join</button>
-                    :
-                      <button>You must be logged in to join</button>
-                }
-                <p>Size: {tourney.players?.length}</p>
-                <h4><u>Participants</u></h4>
-                {userList.map((user) => {
-                    return (
-                        <div className='participant-list' key={`partic-${tourney.id}-${user.id}`}>
-                            {tourney.players?.includes(user.id) &&
-                            <p>{user.username}</p>
-                            }
-                        </div>
-                    )
-                })}
-                <DisplayBrackets tourney={tourney} tournamentId={tourney.id} userList={userList} currUser={currUser} brackets={brackets} getBrackets={getBrackets} handleEdit={handleEdit} />
-                {currUser.id === tourney.owner &&
-                  <Edit handleEdit={handleEdit} tourney={tourney} getTournaments={getTournaments} tournaments={tournaments} handleDeleteTourney={handleDeleteTourney}/>
-                }
-            </div>
-        </>
+            {tourney.players?.includes(currUser.id) ?
+              null
+              :
+              tourney.complete || tourney.locked ?
+              <button>Locked</button>
+              :
+                currUser.username ?
+                <button onClick={handleJoin}>Join</button>
+                :
+                  <button>You must be logged in to join</button>
+            }
+            <p>Size: {tourney.players?.length}</p>
+            <h4><u>Participants</u></h4>
+            {userList.map((user) => {
+                return (
+                    <div className='participant-list' key={`partic-${tourney.id}-${user.id}`}>
+                        {tourney.players?.includes(user.id) &&
+                        <p>{user.username}</p>
+                        }
+                    </div>
+                )
+            })}
+            <DisplayBrackets tourney={tourney} tournamentId={tourney.id} userList={userList} currUser={currUser} brackets={brackets} getBrackets={getBrackets} handleEdit={handleEdit} />
+            {currUser.id === tourney.owner &&
+              <Edit handleEdit={handleEdit} tourney={tourney} getTournaments={getTournaments} tournaments={tournaments} handleDeleteTourney={handleDeleteTourney}/>
+            }
+          </div>
+      </>
     );
 };
 
