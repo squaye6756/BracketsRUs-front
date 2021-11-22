@@ -2,6 +2,7 @@ import {useEffect} from 'react';
 import axios from 'axios';
 import Edit from '../components/Edit.js';
 import {Link} from 'react-router-dom';
+import '../views/owned.css';
 
 const Owned = ({currUser, tournaments, getTournaments}) => {
 
