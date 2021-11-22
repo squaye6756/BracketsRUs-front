@@ -24,11 +24,11 @@ const TourneyList = ({currUser, tournaments, getTournaments, handleEdit}) => {
         {tournaments.map((tourney) => {
           return(
             <div className='tourney-container' id={(tourney.id % 2)? 'grey': (tourney.id % 3) ? 'blue': 'green'} key={tourney.id}>
-              <h2>Name:{tourney.name}</h2>
-              <h3>Game:{tourney.game}</h3>
-              <h3>Details:{tourney.details}</h3>
-              <h3>Prize:{tourney.prizes}</h3>
-              <h3>Limit:{tourney.limit}</h3>
+              <h2>Name: {tourney.name}</h2>
+              <h3>Game: {tourney.game}</h3>
+              <h3>Details: {tourney.details}</h3>
+              <h3>Prize: {tourney.prizes}</h3>
+              <h3>Limit: {tourney.limit}</h3>
               <Link className="link" to={`/tournament/${tourney.id}`}>See Details</Link>
               {currUser.id === tourney.owner &&
                 <Edit handleEdit={handleEdit} tourney={tourney} getTournaments={getTournaments} tournaments={tournaments} handleDeleteTourney={handleDeleteTourney}/>
